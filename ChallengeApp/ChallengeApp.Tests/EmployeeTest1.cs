@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 
 namespace ChallengeApp.Tests
 {
@@ -11,11 +10,11 @@ namespace ChallengeApp.Tests
             user.AddScore(6);
             user.AddScore(10);
             user.AddScore(20);
-            int liczba = 5;
+            user.AddScore(-2);
 
             var result = user.Result;
 
-            Assert.AreEqual(31, result - liczba);
+            Assert.AreEqual(34, result);
 
         }
     }
