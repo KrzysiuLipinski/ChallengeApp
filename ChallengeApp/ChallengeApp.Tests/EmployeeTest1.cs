@@ -6,15 +6,14 @@ namespace ChallengeApp.Tests
         [Test]
         public void AddingAndSubtractingNumbers()
         {
-            var user = new Employee("Krzysiu", "1234");
-            user.AddScore(6);
-            user.AddScore(10);
-            user.AddScore(20);
-            user.AddScore(-2);
+            var employee = new Employee("Krzysiu", "1234");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
 
-            var result = user.Result;
+            var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(34, result);
+            Assert.AreEqual(2,statistics.Min);
 
         }
     }

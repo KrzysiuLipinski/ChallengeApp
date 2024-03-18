@@ -30,7 +30,7 @@ namespace ChallengeApp.Tests
             var employee1 = GetEmployee("Krzysiu");
             var employee2 = GetEmployee("Andrzej");
 
-            Assert.AreEqual(employee1.Login, employee2.Login);
+            Assert.AreEqual(employee1.Name, employee2.Name);
         }
 
         private Employee GetEmployee(string name)
