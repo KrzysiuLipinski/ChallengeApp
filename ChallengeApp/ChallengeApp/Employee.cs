@@ -2,50 +2,70 @@
 {
     public class Employee
     {
-        private List<int> scores = new List<int>();
+        private List<float> grades = new List<float>();
 
-        public Employee(string name)
-        {
-            name = name;
-        }
 
-        public Employee(string v1, string v2)
-        {
-            V1 = v1;
-            V2 = v2;
-        }
-
-        public Employee(string name, string surname, int age)
+        public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
-            this.Age = age;
         }
-
+     
         public string Name { get; private set; }
-
+     
         public string Surname { get; private set; }
 
-        public int Age { get; private set; }
-
-        public int Result
+        public void AddGrade(float grade)
         {
-            get
+            int valueInInt = (int)grade;
+
+            if (grade >= 0 && grade <= 100)
             {
-                return this.scores.Sum();
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("invalid grade value");
+            }
+
+        }
+
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.grades.Add(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not float");
             }
         }
 
-        public string V1 { get; }
-        public string V2 { get; }
-        public string name { get; }
-        public object Login { get; set; }
-
-        public void AddScore(int score)
+        public void AddGrade(double grade)
         {
-            this.scores.Add(score);
+            float floatValue = (float)grade;
+            this.AddGrade(floatValue);
+        }
+
+        public Statistics GetStatistics()
+        {
+            var statistics = new Statistics();
+
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach(var grade in this.grades)
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
+            }
+
+            statistics.Average = statistics.Average / this.grades.Count;
+
+            return statistics;
         }
     }
 }
-
-
